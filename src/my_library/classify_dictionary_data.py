@@ -16,11 +16,15 @@ def classify_dictionary_data(dictionary1, dictionary2):
         if len(item) < 2:
             continue
         if item[0] == "ネガ（経験）" or "ネガ（評価）":
+            if not item[1] in negative_words:
+                negative_words.append(item[1])
             items=""
             for i in range(1,len(item)):
                 items=items+item[i]
             negative_words.append(items)
         elif item[0] == "ポジ（評価）" or "ポジ（経験）":
+            if not item[1] in positive_words:
+                positive_words.append(item[1])
             items=""
             for i in range(1,len(item)):
                 items=items+item[i]

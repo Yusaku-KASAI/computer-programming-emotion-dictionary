@@ -8,27 +8,17 @@ sys.path.append(project_root_path)
 
 # 自作ライブラリのインポート
 import src.my_library.predict_polarity as predict_polarity
+import src.my_library.classify_dictionary_data as classify_dictionary_data
 
+classify_dictionary_data.classify_dictionary_data(dictionary1,dictionary2)
 def test_predict_positive():
     # ポジティブな入力に対する予測結果をテスト
-    input_statistics = [5, 1]
-    expected_output = 'positive'
-    assert predict_polarity.predict_polarity(input_statistics) == expected_output
+    assert predict_polarity.predict_polarity("猫と一緒に過ごす時間が一番の癒し。",positive_words,negative_words)>0
+    
 
 def test_predict_negative():
-    # ネガティブな入力に対する予測結果をテスト
-    input_statistics = [1, 4]
-    expected_output = 'negative'
-    assert predict_polarity.predict_polarity(input_statistics) == expected_output
+    assert predict_polarity.predict_polarity("猫と一緒に過ごす時間が一番の癒し。",positive_words,negative_words)<0
 
 def test_predict_neutral():
     # 中立的な入力に対する予測結果をテスト
-    input_statistics = [3, 3]
-    expected_output = 'neutral'
-    assert predict_polarity.predict_polarity(input_statistics) == expected_output
-
-def test_predict_empty():
-    # 空の入力に対する予測結果をテスト
-    input_statistics = []
-    expected_output = 'neutral'
-    assert predict_polarity.predict_polarity(input_statistics) == expected_output
+    assert predict_polarity.predict_polarity("猫と一緒に過ごす時間が一番の癒し。",positive_words,negative_words)==0
