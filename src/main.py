@@ -17,6 +17,8 @@ dictionary1 = load_dictionary_data(os.path.join(data_dir, 'dictionary1.txt'))
 dictionary2 = load_dictionary_data(os.path.join(data_dir, 'dictionary2.txt'))
 
 positive_words, negative_words = classify_dictionary_data(dictionary1, dictionary2)
+for positive_word in positive_words:
+    write_file(os.path.join(data_dir, 'sample.txt'), positive_word)
 
 for sentence in sentences:
     emotion = predict_polarity(sentence, positive_words, negative_words)
